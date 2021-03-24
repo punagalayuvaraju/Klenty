@@ -29,11 +29,28 @@ export class HomeComponent implements OnInit {
     })
     this.getCurrentUser();
     this.getAllTopics();
+    this.userservc.taskAnyNew().subscribe((data: any) => {
+      this.getNewlyAddedComments(data);
+    });
+    this.userservc.taskAnyNewtopic().subscribe((data: any) => {
+      this.getAllTopics();
+    });
   }
 
   get formControls() { return this.disscussionForm.controls; }
   get replyControls() { return this.replyForm.controls; }
 
+  getNewlyAddedComments(topicid){
+    this.spinner.show();
+      this.allComments = [];
+      this.spinner.hide();
+      this.userservc.getAllComments(topicid).subscribe((data: any) => {
+        this.allComments = data && data.length ? data : [];
+        this.spinner.hide();
+      }, err => {
+        this.spinner.hide();
+      })
+  }
 
   getCurrentUser(){
     this.userinfo = null;
@@ -47,7 +64,6 @@ export class HomeComponent implements OnInit {
       this.allTopicsList.forEach(element => {
         element.isOpen = false;
       });
-      console.log(this.allTopicsList);
     })
   }
 
@@ -62,7 +78,6 @@ export class HomeComponent implements OnInit {
  }
 
   enableCommentsfxn(event,topic){
-    console.log(topic._id)
     event.stopPropagation();
     topic.isOpen = !topic.isOpen
     this.changeisOpen(topic._id,topic.isOpen);
@@ -72,7 +87,6 @@ export class HomeComponent implements OnInit {
       this.spinner.hide();
       this.userservc.getAllComments(topic._id).subscribe((data: any) => {
         this.allComments = data && data.length ? data : [];
-        console.log(this.allComments);
         this.spinner.hide();
       }, err => {
         this.spinner.hide();
@@ -91,7 +105,6 @@ export class HomeComponent implements OnInit {
    if(this.disscussionForm.valid){
      this.spinner.show();
     this.userservc.createTopicDesc(this.disscussionForm.value).subscribe((data:any) => {
-      console.log(data);
       if (data && data.message) {
         this.toast.success(data.message);
         this.disscussionForm.reset();
@@ -109,9 +122,7 @@ export class HomeComponent implements OnInit {
   replyTopic(event,topicId) {
     event.stopPropagation();
     if(this.replyForm.valid && this.userinfo && this.userinfo.firstname){
-      console.log(this.replyForm.value)
       this.userservc.createComment(this.replyForm.value, topicId).subscribe((data: any) => {
-        console.log(data);
         if (data && data.message) {
           this.toast.success(data.message);
           this.replyForm.reset();

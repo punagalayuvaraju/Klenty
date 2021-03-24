@@ -24,10 +24,18 @@ if(config.seedDB) { require('./config/seed'); }
 // Setup server
 var app = express();
 var server = require('http').createServer(app);
-var socketio = require('socket.io')(server, {
+
+var socketio = require("socket.io")(server, {
   serveClient: config.env !== 'production',
-  path: '/socket.io-client'
+  path: '/socket.io',
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"],
+    allowedHeaders: ["my-custom-header"],
+    credentials: false
+  }
 });
+global.socketIO = socketio;
 require('./config/socketio')(socketio);
 require('./config/express')(app);
 require('./routes')(app);

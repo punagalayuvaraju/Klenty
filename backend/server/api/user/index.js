@@ -8,12 +8,6 @@ var path = require('path');
 
 var router = express.Router();
 
-// router.get('/:id', auth.isAuthenticated(), controller.show);
-
 router.post('/', controller.create);
-
-// router.put('/:id/password', auth.isAuthenticated(), controller.changePassword);
-
-// router.delete('/:id', auth.isAuthenticated(), controller.destroy);
 
 module.exports = router;

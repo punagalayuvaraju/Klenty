@@ -21,7 +21,7 @@ export class UserService {
     public router: Router,
     public toast: ToastrService
     ) { 
-      // this.socketio = io(this.serverurl);
+      this.socketio = io(this.serverurl);
     }
 
     public isAuthenticated() {
@@ -70,7 +70,17 @@ export class UserService {
     // socket configuration //////////////////////////////////////
 taskAnyNew() {
   const observable = new Observable<any>(observer => {
-    this.socketio.on('urlProcess:save', (data) => {
+    this.socketio.on('latestComment', (data) => {
+      console.log(data);
+      observer.next(data);
+    });
+  });
+  return observable;
+}
+
+taskAnyNewtopic(){
+  const observable = new Observable<any>(observer => {
+    this.socketio.on('latesttopic', (data) => {
       console.log(data);
       observer.next(data);
     });
