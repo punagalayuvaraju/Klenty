@@ -62,7 +62,7 @@
                                 </form>
                                </div>
 
-                               <div>
+                               <div *ngIf="allComments?.length">
                                    <mat-card *ngFor = "let eachcomment of this.allComments">
                                     <mat-card-header>
                                         <mat-card-title> commented By :- {{eachcomment?.userId?.firstname}}</mat-card-title>
@@ -70,6 +70,13 @@
                                       </mat-card-header>
                                    </mat-card>
                                </div>
+                               <div *ngIf="!allComments?.length">
+                                <mat-card>
+                                 <mat-card-header>
+                                     <mat-card-title> No Comments Till the Date !!!</mat-card-title>
+                                   </mat-card-header>
+                                </mat-card>
+                            </div>
                                </div>
 
                             </mat-card-actions>
