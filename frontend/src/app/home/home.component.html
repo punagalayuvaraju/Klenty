@@ -1,0 +1,66 @@
+<div class="heighthome100">
+    <div class="topsectionheight">
+        <mat-toolbar class="position-fixed">
+            <div class="dvwdth">
+                <span>Dashboard >> {{ userinfo?.firstname }}</span>
+                <span *ngIf="userinfo?.firstname" (click)="logout($event)" class="icnend">
+                    <mat-icon>input</mat-icon>
+                </span>
+                <span *ngIf="!userinfo?.firstname" class="icnend">
+                    <span><button mat-raised-button (click)="gotoLogin()">
+                            Login
+                        </button></span>
+                </span>
+            </div>
+        </mat-toolbar>
+    </div>
+
+    <div class="maincss">
+        <mat-horizontal-stepper>
+            <mat-step>
+                <form>
+                    <ng-template matStepLabel>All Topics</ng-template>
+                    <div>
+                        <img src="assets\no-data-to-show.png" />
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step *ngIf="userinfo?.firstname">
+                <form [formGroup]="disscussionForm" (ngSubmit)="createTopic($event)">
+                    <ng-template matStepLabel>Add Topic</ng-template>
+                    <div>
+                        <mat-card>
+                            <div class="dspFlx dvwdth">
+                                <mat-form-field appearance="outline" class="width60perc">
+                                    <mat-label>Add Topic</mat-label>
+                                    <input matInput placeholder="" formControlName="topicControl" />
+                                    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                                    <mat-error *ngIf="formControls?.topicControl?.errors">
+                                        <span *ngIf="formControls?.topicControl?.errors?.required">
+                                            Topic is Required !!!
+                                        </span>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="dspFlx dvwdth">
+                                <mat-form-field appearance="outline" class="width60perc">
+                                    <mat-label>Add description</mat-label>
+                                    <input matInput placeholder="" formControlName="discussionControl" />
+                                    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                                    <mat-error *ngIf="formControls?.discussionControl?.errors">
+                                        <span *ngIf="formControls?.discussionControl?.errors?.required">
+                                            Description is Required !!!
+                                        </span>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="dspFlx dvwdth">
+                                <button mat-raised-button class="clrbtn">Submit</button>
+                            </div>
+                        </mat-card>
+                    </div>
+                </form>
+            </mat-step>
+        </mat-horizontal-stepper>
+    </div>
+</div>

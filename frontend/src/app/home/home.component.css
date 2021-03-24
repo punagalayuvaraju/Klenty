@@ -1,0 +1,27 @@
+.position-fixed{
+    position: fixed;
+    background-color: #ff00a5;
+  }
+  .dvwdth{
+    width:100%;
+  }
+  .icnend{
+    float:right;
+    cursor: pointer;
+    width: 20%;
+    display: flex;
+    justify-content: space-evenly;
+  }
+  .width60perc{
+    width: 60%;
+  }
+  .clrbtn{
+    color: #ff00a5;
+    background-color: black;
+  }
+  .heighthome100{
+    height: 100%;
+  }
+  .topsectionheight{
+    height: calc(100% - 556px);
+  }
