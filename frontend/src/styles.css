@@ -7,3 +7,16 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     justify-content: center;
     flex-direction: row;
 }
+.dspFlxSpaceEven{
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+}
+.dspFlxstart{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+.marginTop15px{
+margin-top: 15px;
+}

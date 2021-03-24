@@ -5,15 +5,15 @@ var Comment = require('./comment.model');
 
 // Get list of comments
 exports.index = function(req, res) {
-  Comment.find(function (err, comments) {
+  Comment.find().populate().populate().exec(function (err, comments) {
     if(err) { return handleError(res, err); }
     return res.status(200).json(comments);
   });
 };
 
 // Get a single comment
-exports.show = function(req, res) {
-  Comment.findById(req.params.id, function (err, comment) {
+exports.getBytopicId = function(req, res) {
+  Comment.find({topicId:req.params.id}).sort({createdAt: -1}).populate({path: 'userId', select: 'firstname'}).exec(function (err, comment) {
     if(err) { return handleError(res, err); }
     if(!comment) { return res.status(404).send('Not Found'); }
     return res.json(comment);
@@ -22,9 +22,10 @@ exports.show = function(req, res) {
 
 // Creates a new comment in the DB.
 exports.create = function(req, res) {
+  req.body.userId = req.user._id;
   Comment.create(req.body, function(err, comment) {
     if(err) { return handleError(res, err); }
-    return res.status(201).json(comment);
+    return res.status(201).send({message: 'commented Succesfully !!!'});
   });
 };
 

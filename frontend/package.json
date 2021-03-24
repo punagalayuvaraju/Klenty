@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
   "name": "testing",
   "version": "0.0.0",
   "scripts": {
@@ -23,6 +22,7 @@
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
     "body-parser": "^1.19.0",
+    "bootstrap": "^5.0.0-beta3",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "hammerjs": "^2.0.8",
@@ -54,85 +54,4 @@
     "tslint": "~5.15.0",
     "typescript": "~3.5.3"
   }
-=======
-  "name": "aibackendcontent",
-  "version": "0.0.0",
-  "main": "server/app.js",
-  "dependencies": {
-    "body-parser": "~1.5.0",
-    "composable-middleware": "^0.3.0",
-    "compression": "~1.0.1",
-    "connect-mongo": "^0.8.1",
-    "connect-multiparty": "^2.2.0",
-    "cookie-parser": "~1.0.1",
-    "cors": "^2.8.5",
-    "device-detector-js": "^2.1.1",
-    "errorhandler": "~1.0.0",
-    "express": "~4.9.0",
-    "express-jwt": "^3.0.0",
-    "express-session": "~1.0.2",
-    "generator-node-express-mongo": "^2.1.7",
-    "jsonwebtoken": "^5.0.0",
-    "lodash": "~2.4.1",
-    "method-override": "~1.0.0",
-    "moment": "^2.24.0",
-    "mongoose": "^5.5.5",
-    "morgan": "~1.0.0",
-    "nodemailer": "^6.4.2",
-    "nodemon": "^2.0.2",
-    "passport": "~0.2.0",
-    "passport-facebook": "latest",
-    "passport-google-oauth": "latest",
-    "passport-local": "~0.1.6",
-    "passport-twitter": "latest",
-    "random-number": "0.0.9",
-    "save": "^2.4.0",
-    "socket.io": "^1.0.6",
-    "socket.io-client": "^1.0.6",
-    "socketio-jwt": "^3.0.0"
-  },
-  "devDependencies": {
-    "grunt": "~0.4.4",
-    "grunt-autoprefixer": "~0.7.2",
-    "grunt-wiredep": "~1.8.0",
-    "grunt-concurrent": "~0.5.0",
-    "grunt-contrib-clean": "~0.5.0",
-    "grunt-contrib-concat": "~0.4.0",
-    "grunt-contrib-copy": "~0.5.0",
-    "grunt-contrib-watch": "~0.6.1",
-    "grunt-google-cdn": "~0.4.0",
-    "grunt-newer": "~0.7.0",
-    "grunt-ng-annotate": "^0.2.3",
-    "grunt-rev": "~0.1.0",
-    "grunt-svgmin": "~0.4.0",
-    "grunt-usemin": "~2.1.1",
-    "grunt-env": "~0.4.1",
-    "grunt-node-inspector": "~0.1.5",
-    "grunt-nodemon": "~0.2.0",
-    "grunt-angular-templates": "^0.5.4",
-    "grunt-dom-munger": "^3.4.0",
-    "grunt-protractor-runner": "^1.1.0",
-    "grunt-injector": "~0.5.4",
-    "grunt-build-control": "~0.4.0",
-    "grunt-mocha-test": "~0.10.2",
-    "jit-grunt": "^0.5.0",
-    "time-grunt": "~0.3.1",
-    "grunt-express-server": "~0.4.17",
-    "grunt-open": "~0.2.3",
-    "open": "~0.0.4",
-    "jshint-stylish": "~0.1.5",
-    "connect-livereload": "~0.4.0",
-    "requirejs": "~2.1.11",
-    "supertest": "~0.11.0",
-    "should": "~3.3.1"
-  },
-  "engines": {
-    "node": ">=0.10.0"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server/app.js"
-  },
-  "private": true
->>>>>>> f5e3d1d5e703e6813045a2ef65d728c873981fcc
 }

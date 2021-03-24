@@ -5,10 +5,10 @@ var Topic = require('./topic.model');
 
 // Get list of topics
 exports.index = function(req, res) {
-  Topic.find(function (err, topics) {
+  Topic.find().populate({path: 'userId', select: 'firstname'}).exec(function(err, topics) {
     if(err) { return handleError(res, err); }
     return res.status(200).json(topics);
-  });
+  })
 };
 
 // Get a single topic
@@ -22,9 +22,10 @@ exports.show = function(req, res) {
 
 // Creates a new topic in the DB.
 exports.create = function(req, res) {
+  req.body.userId = req.user._id;
   Topic.create(req.body, function(err, topic) {
     if(err) { return handleError(res, err); }
-    return res.status(201).json(topic);
+    return res.status(201).send({message:'Topic and Description Added Successfully !!!'});
   });
 };
 

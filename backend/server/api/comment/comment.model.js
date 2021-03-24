@@ -4,8 +4,9 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var CommentSchema = new Schema({
-  name: String,
-  info: String,
+  userId:{type:Schema.Types.ObjectId,ref:'User'},
+  topicId:{type:Schema.Types.ObjectId,ref:'Topic'},
+  comment: String,
   active: Boolean
 },{ timestamps: true });
 

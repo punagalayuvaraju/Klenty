@@ -25,3 +25,9 @@
   .topsectionheight{
     height: calc(100% - 556px);
   }
+  .fitHeight{
+    height: fit-content;
+  }
+  .mousepoint{
+    cursor: pointer;
+  }

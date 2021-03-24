@@ -20,8 +20,60 @@
             <mat-step>
                 <form>
                     <ng-template matStepLabel>All Topics</ng-template>
-                    <div>
+                    <div *ngIf = "!allTopicsList?.length">
                         <img src="assets\no-data-to-show.png" />
+                    </div>
+
+                    <div *ngIf = "allTopicsList?.length">
+                        <mat-card class="example-card" *ngFor="let record of allTopicsList">
+                            <mat-card-header>
+                                <div class="dspFlxSpaceEven dvwdth">
+                                <mat-card-title>Topic : {{record?.topic}}</mat-card-title>
+                                <span> CreatedBy: {{record?.userId.firstname}}</span>
+                                </div>
+                              </mat-card-header>
+                              <mat-card-content>
+                                <p >
+                                 Description : {{record?.description}}
+                                </p>
+                              </mat-card-content>
+                            <mat-card-actions>
+                                <div class="dspFlxstart">
+                                <mat-icon (click)="enableCommentsfxn($event,record)" class="mousepoint">
+                                    message
+                                </mat-icon>
+                                <span (click)="enableCommentsfxn($event,record)" class="mousepoint">Comments</span>
+                                </div>
+                               <div *ngIf="record?.isOpen">
+                               <div>
+                                <form [formGroup]="replyForm" class="dvwdth" (ngSubmit)="replyTopic($event,record._id)">
+                                    <div class="dspFlxSpaceEven dvwdth">
+                                    <mat-form-field appearance="outline" class="width60perc">
+                                        <mat-label>Comment</mat-label>
+                                        <input matInput placeholder="type here to comment" formControlName="replyControl" />
+                                        <mat-error *ngIf="replyControls?.replyControl?.errors">
+                                            <span *ngIf="replyControls?.replyControl?.errors?.required">
+                                                reply is Required !!!
+                                            </span>
+                                        </mat-error>
+                                    </mat-form-field> 
+                                    <span class="marginTop15px"><button type="submit" class="clrbtn fitHeight" mat-button>comment</button></span>
+                                </div>
+                                </form>
+                               </div>
+
+                               <div>
+                                   <mat-card *ngFor = "let eachcomment of this.allComments">
+                                    <mat-card-header>
+                                        <mat-card-title> commented By :- {{eachcomment?.userId?.firstname}}</mat-card-title>
+                                        <mat-card-subtitle>{{eachcomment?.comment}}</mat-card-subtitle>
+                                      </mat-card-header>
+                                   </mat-card>
+                               </div>
+                               </div>
+
+                            </mat-card-actions>
+                          </mat-card>
                     </div>
                 </form>
             </mat-step>
@@ -55,7 +107,7 @@
                                 </mat-form-field>
                             </div>
                             <div class="dspFlx dvwdth">
-                                <button mat-raised-button class="clrbtn">Submit</button>
+                                <button type="submit" mat-raised-button class="clrbtn">Submit</button>
                             </div>
                         </mat-card>
                     </div>

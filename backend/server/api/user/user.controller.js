@@ -22,9 +22,9 @@ exports.create = function (req, res, next) {
     if(err) {
       console.log(err);
       if (err && err.code === 11000) {
-        res.status(400).json({message: 'The specified User is already Exist with us !!!'})
+        res.status(500).json({message: 'The specified User is already Exist with us !!!'})
        } else {
-         res.status(400).send({message:'Something Went Wrong !!!'});
+         res.status(500).send({message:'Something Went Wrong !!!'});
        }  
     } else {
       var token = jwt.sign({_id: response._id }, config.secrets.session, { expiresInMinutes: 60*5 });

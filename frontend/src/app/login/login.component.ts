@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit {
     }, err => {
       this.toast.warning(err)
       this.spinner.hide();
+      this.router.navigate(['login']);
     })
   }
   }
